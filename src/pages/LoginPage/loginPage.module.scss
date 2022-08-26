@@ -1,6 +1,16 @@
 @import '../../components/GlobalStyles/Mixin.scss';
 
-$--size-img-container: 450px;
+$size-img-container: 450px;
+$size-img: 270px;
+
+@mixin responsive-for-tablet-img-container {
+    width: calc($size-img-container - 7%);
+    height: calc($size-img-container - 7%);
+
+    img {
+        width: calc($size-img - 7%);
+    }
+}
 
 .wrapper {
     width: 100%;
@@ -30,13 +40,13 @@ $--size-img-container: 450px;
     transform: translate(-50%, -50%);
     border-radius: 50%;
     background-color: #f1f1ee;
-    width: $--size-img-container;
-    height: $--size-img-container;
+    width: $size-img-container;
+    height: $size-img-container;
     display: flex;
     align-items: center;
     justify-content: center;
     img {
-        width: 270px;
+        width: $size-img;
     }
 }
 .content-container {
@@ -116,4 +126,29 @@ $--size-img-container: 450px;
 // _ pc zoom 125%, 150% _
 
 @media (min-width: 1200px) and (max-width: 1600px) {
+    .img-container {
+        @include responsive-for-tablet-img-container;
+    }
+}
+
+// mobile
+
+@media (max-width: 739px) {
+    .content {
+        padding: 100px 40px;
+    }
+    .inner {
+        overflow: unset;
+    }
+}
+
+// tablet
+
+@media (min-width: 740px) and (max-width: 1024px) {
+    .inner {
+        overflow: unset;
+    }
+    .img-container {
+        @include responsive-for-tablet-img-container;
+    }
 }
