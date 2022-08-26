@@ -1,0 +1,145 @@
+@import '../../components/GlobalStyles/Mixin.scss';
+$sub-text-color-light: rgba(85, 85, 85, 0.8);
+$width-sub-text: 100px;
+.wrapper {
+    width: 100%;
+    height: 70%;
+}
+.inner {
+    @include defaultStyleWrapper;
+    padding: 0 30px 10px;
+}
+.header {
+    padding: 18px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        background-color: #dbdbdb;
+        bottom: 0px;
+    }
+}
+.header-content {
+    color: var(--text-color);
+    h3 {
+        font-size: 2.3rem;
+        font-weight: 400;
+    }
+    p {
+        color: #555;
+        margin-top: 3px;
+    }
+}
+.switch-Theme-btn {
+    margin-right: 12px;
+}
+.content {
+    padding-top: 40px;
+}
+.account {
+    div {
+        margin-bottom: 30px;
+        display: flex;
+        align-items: center;
+
+        input {
+            flex: 1;
+            padding: 15px;
+            background-color: #f7f7f7;
+        }
+
+        p {
+            color: $sub-text-color-light;
+            font-size: 1.8rem;
+            margin-right: 20px;
+            text-align: right;
+            width: $width-sub-text;
+        }
+    }
+}
+.user-name {
+    p {
+        width: auto !important;
+    }
+
+    p:first-of-type {
+        color: $sub-text-color-light;
+        font-size: 1.8rem;
+    }
+
+    p:last-of-type {
+        margin-left: 20px;
+        color: var(--text-color);
+        font-size: 1.6rem;
+    }
+}
+.submit-btn {
+    button {
+        padding: 10px 30px;
+        margin-left: calc($width-sub-text + 30px);
+        margin-top: 20px;
+    }
+}
+.pre-avatar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+
+    img {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    p {
+        margin-top: 25px;
+        font-size: 1.8rem;
+        color: var(--text-color);
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        height: 100%;
+        width: 2px;
+        background-color: #dbdbdb;
+        left: 0;
+    }
+}
+
+// darkMode
+
+.inner.dark {
+    background-color: #292c35;
+}
+
+.header-content.dark {
+    color: var(--text-color-darkMode);
+    p {
+        color: var(--text-color-darkMode);
+    }
+}
+
+.content.dark {
+    .account {
+        div {
+            p {
+                color: var(--text-color-darkMode);
+            }
+        }
+    }
+}
+
+.pre-avatar.dark {
+    p {
+        color: var(--text-color-darkMode);
+    }
+}

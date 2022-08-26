@@ -1,0 +1,119 @@
+@import '../../components/GlobalStyles/Mixin.scss';
+
+$--size-img-container: 450px;
+
+.wrapper {
+    width: 100%;
+    height: 80%;
+}
+
+.inner {
+    @include defaultStyleWrapper;
+}
+
+.image {
+    background-color: var(--background-color-primary-light-1);
+    position: relative;
+}
+.logo {
+    position: absolute;
+    top: 60px;
+    left: 60px;
+    img {
+        width: var(--logo-width);
+    }
+}
+.img-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background-color: #f1f1ee;
+    width: $--size-img-container;
+    height: $--size-img-container;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+        width: 270px;
+    }
+}
+.content-container {
+    background-color: var(--background-color-primary-light-2);
+    position: relative;
+}
+.content {
+    padding: 100px 80px;
+    height: 100%;
+
+    div:first-child {
+        position: absolute;
+        top: 50px;
+        right: 60px;
+    }
+
+    h3 {
+        color: var(--text-color);
+        font-size: 3.1rem;
+        padding-bottom: 60px;
+    }
+
+    form {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+
+        input {
+            padding: 15px;
+            margin: 20px 0;
+        }
+        span {
+            position: absolute;
+            right: 0;
+            bottom: 80px;
+            color: #666;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        button {
+            padding: 15px;
+            border-radius: 15px;
+            margin-top: 60px;
+        }
+    }
+}
+
+// darkMode
+
+.inner.dark {
+    .image,
+    .content-container {
+        background-color: #292c35;
+        transition: all 0.5s ease-in-out;
+    }
+
+    .image {
+        .logo img {
+            filter: brightness(2);
+        }
+
+        .img-container {
+            filter: brightness(0.9);
+        }
+    }
+
+    .content-container {
+        .content h3,
+        span {
+            color: var(--text-color-darkMode);
+        }
+    }
+}
+
+// Responsive
+
+// _ pc zoom 125%, 150% _
+
+@media (min-width: 1200px) and (max-width: 1600px) {
+}

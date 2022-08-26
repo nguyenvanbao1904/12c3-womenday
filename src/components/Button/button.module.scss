@@ -1,0 +1,44 @@
+$fontSize: 1.8rem;
+
+.button {
+    background-color: #996252;
+    cursor: pointer;
+    color: #fff;
+    font-family: Cabin, sans-serif;
+    font-size: $fontSize;
+    font-weight: 400;
+    box-shadow: 0 5px 15px rgb(0 0 0 / 35%);
+    position: relative;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background-color: #6c453a;
+        box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
+    }
+
+    a {
+        color: #fff;
+        font-family: Cabin, sans-serif;
+        font-size: $fontSize;
+        font-weight: 400;
+        text-decoration: none;
+    }
+
+    a::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        right: 0;
+    }
+}
+
+.button.dark {
+    background-color: #687eff;
+    filter: brightness(0.9) contrast(1.2);
+
+    &:hover {
+        filter: brightness(0.8) contrast(1.5);
+    }
+}

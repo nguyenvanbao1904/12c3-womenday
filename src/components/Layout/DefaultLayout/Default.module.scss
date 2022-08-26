@@ -1,0 +1,16 @@
+@import '../../GlobalStyles/Mixin.scss';
+
+.wrapper {
+    @include defaultTheme;
+}
+.inner,
+.container {
+    width: 100%;
+    height: 100%;
+}
+
+// darkMode
+
+.wrapper.dark {
+    @include BackgroundDarkTheme;
+}

@@ -1,0 +1,109 @@
+@import '../../components/GlobalStyles/Mixin.scss';
+
+.wrapper {
+    width: 100%;
+    height: 70%;
+}
+
+.inner {
+    @include defaultStyleWrapper;
+    pointer-events: none;
+}
+.image-container {
+    height: 100%;
+    background-color: var(--background-color-primary-light-1);
+
+    .image {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+    }
+
+    img {
+        width: 400px;
+        height: 400px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+}
+.content-container {
+    background-color: var(--background-color-primary-light-2);
+    position: relative;
+}
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 100px 80px;
+    color: var(--text-color);
+
+    h2 {
+        font-size: 4rem;
+        font-weight: 500;
+        padding-bottom: 60px;
+        font-family: var(--title-font);
+    }
+
+    p {
+        text-align: center;
+        font-size: 2.2rem;
+        font-weight: 400;
+        line-height: 1.5;
+    }
+}
+
+.signature {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    text-align: right;
+
+    h4 {
+        color: var(--text-color);
+        font-size: 2.2rem;
+        font-weight: 400;
+        line-height: 1.5;
+        text-transform: capitalize;
+        padding-bottom: 10px;
+    }
+
+    span {
+        color: #655047;
+        font-family: Josefin Sans, sans-serif;
+        font-size: 15px;
+        font-style: italic;
+        font-weight: 300;
+        letter-spacing: 6px;
+        text-transform: capitalize;
+    }
+}
+
+// darkMode
+
+.inner.dark {
+    .image-container,
+    .content-container {
+        background-color: #292c35;
+    }
+
+    .image-container {
+        img {
+            filter: brightness(0.85) contrast(1.1);
+        }
+    }
+
+    .content-container {
+        .content {
+            color: var(--text-color-darkMode);
+            filter: brightness(0.9);
+        }
+        .signature {
+            h4,
+            span {
+                color: var(--text-color-darkMode);
+            }
+        }
+    }
+}

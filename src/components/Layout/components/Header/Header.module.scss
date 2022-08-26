@@ -1,0 +1,120 @@
+.wrapper {
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 0 100px 0;
+    position: relative;
+
+    img {
+        width: var(--logo-width);
+    }
+
+    h1 {
+        color: var(--text-color);
+        font-family: var(--title-font);
+        text-shadow: var(--text-shadow);
+        font-weight: 400;
+    }
+}
+.avatar-container {
+    position: relative;
+    img {
+        border-radius: 50%;
+        cursor: pointer;
+        height: 50px;
+        object-fit: cover;
+        width: 50px;
+    }
+}
+.sub-menu {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 48px 100px 0 rgb(17 12 46 / 15%);
+    margin-top: 10px;
+    width: 150px;
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    transition: var(--default-transition);
+    z-index: 1;
+
+    li {
+        cursor: pointer;
+        font-weight: 500;
+        list-style: none;
+        padding: 15px;
+        transition: var(--default-transition);
+        position: relative;
+
+        a {
+            text-decoration: none;
+            color: var(--text-color);
+
+            &::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        &:hover {
+            transform: translateX(10px);
+        }
+
+        &:last-child {
+            padding-left: 25px;
+        }
+
+        &:last-child:hover {
+            transform: translateX(0);
+        }
+    }
+
+    ul::before {
+        content: ' ';
+        width: 100%;
+        height: 20px;
+        display: block;
+        position: absolute;
+        top: -20px;
+    }
+
+    ul::after {
+        content: ' ';
+        border-color: transparent transparent #fff;
+        border-style: solid;
+        border-width: 10px 15px;
+        display: block;
+        position: absolute;
+        left: 10px;
+        top: -19px;
+    }
+}
+.avatar-container:hover .sub-menu {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+// darkMode
+
+.wrapper.dark {
+    filter: contrast(0.8);
+    z-index: 1;
+    a {
+        img {
+            filter: brightness(1.8);
+        }
+    }
+    h1 {
+        color: var(--text-color-darkMode);
+        text-shadow: none;
+    }
+}
+.sub-menu.dark {
+    background-color: #292c35;
+    a {
+        color: var(--text-color-darkMode);
+    }
+}

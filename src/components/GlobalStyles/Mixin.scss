@@ -1,0 +1,35 @@
+@mixin defaultTheme(
+    $darkBackground: linear-gradient(135deg, #18191a, #18191a),
+    $lightBackground: linear-gradient(135deg, #fdfcfb, #e2d1c3)
+) {
+    background-image: $lightBackground;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+
+    // darkMode
+    &::before {
+        content: '';
+        background-image: $darkBackground;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        transform: translateX(-100%);
+        transition: all 0.5s ease-in-out;
+    }
+}
+
+@mixin defaultStyleWrapper {
+    height: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 48px 100px 0 rgb(17 12 46 / 15%);
+    position: relative;
+}
+
+@mixin BackgroundDarkTheme {
+    &::before {
+        content: '';
+        transform: translateX(0);
+    }
+}
