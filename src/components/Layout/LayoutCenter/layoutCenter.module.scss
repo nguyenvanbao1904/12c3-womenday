@@ -19,3 +19,11 @@
 .wrapper.dark {
     @include BackgroundDarkTheme;
 }
+
+// responsive
+
+@media (max-width: 739px) {
+    .wrapper {
+        overflow-y: scroll;
+    }
+}

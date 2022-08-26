@@ -52,3 +52,30 @@ $--size-img: 450px;
 .image.dark {
     filter: brightness(0.9);
 }
+
+// responsive
+
+// tablet
+
+@media (min-width: 740px) and (max-width: 1024px) {
+    .image {
+        img {
+            width: 350px;
+            height: 350px;
+        }
+    }
+    .content {
+        p {
+            width: 100%;
+        }
+    }
+}
+
+// mobile
+
+@media (max-width: 739px) {
+    .wrapper {
+        margin-top: 50%;
+        transform: translateY(-50%);
+    }
+}

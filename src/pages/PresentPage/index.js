@@ -19,7 +19,7 @@ function PresentPage() {
                         />
                     </div>
                 </div>
-                <div className={cx('content-container', 'col l-7 m-0 c-0')}>
+                <div className={cx('content-container', 'col l-7 m-12 c-12')}>
                     <div className={cx('content')}>
                         <h2>✨ Àn Chao ✨</h2>
                         <p>
