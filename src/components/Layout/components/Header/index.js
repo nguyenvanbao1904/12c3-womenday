@@ -1,20 +1,28 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import className from 'classnames/bind';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './Header.module.scss';
 import { logo } from '~/static/imgs';
 import { defaultAvatar } from '~/static/imgs';
 import SwitchTheme from '~/components/SwitchTheme';
 import { ThemeContext } from '~/components/ThemeContext';
+import MenuMobile from '~/components/MenuMobile';
 
 const cx = className.bind(styles);
 
 function Header() {
     const { darkMode } = useContext(ThemeContext);
+    const [showMenuMobile, setshowMenuMobile] = useState(false);
 
     function handelAvatarError(e) {
         e.target.src = defaultAvatar;
+    }
+
+    function handelClickMenu() {
+        setshowMenuMobile(true);
     }
 
     return (
@@ -39,6 +47,14 @@ function Header() {
                     </ul>
                 </div>
             </div>
+            <div className={cx('icon-menu-mobile')} onClick={handelClickMenu}>
+                <FontAwesomeIcon icon={faBars} />
+            </div>
+            <MenuMobile
+                handelAvatarError={handelAvatarError}
+                show={showMenuMobile}
+                setShow={setshowMenuMobile}
+            />
         </div>
     );
 }

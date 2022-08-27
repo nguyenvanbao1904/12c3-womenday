@@ -98,6 +98,11 @@
     pointer-events: auto;
 }
 
+.icon-menu-mobile {
+    font-size: 3rem;
+    display: none;
+}
+
 // darkMode
 
 .wrapper.dark {
@@ -111,6 +116,9 @@
     h1 {
         color: var(--text-color-darkMode);
         text-shadow: none;
+    }
+    .icon-menu-mobile {
+        color: var(--text-color-darkMode);
     }
 }
 .sub-menu.dark {
@@ -136,5 +144,8 @@
         img {
             display: none;
         }
+    }
+    .icon-menu-mobile {
+        display: block;
     }
 }

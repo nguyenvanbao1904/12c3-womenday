@@ -1,6 +1,8 @@
 import { useContext } from 'react';
 import { ThemeContext } from '~/components/ThemeContext';
 import classNames from 'classnames/bind';
+import { Link } from 'react-router-dom';
+
 import styles from './profilePage.module.scss';
 import Input from '~/components/Input';
 import Button from '~/components/Button';
@@ -44,12 +46,17 @@ function ProfilePage() {
                                 <p>Link ảnh</p>
                                 <Input type="text" darkMode={darkMode} />
                             </div>
-                            <div className={cx('submit-btn')}>
+                            <div className={cx('btn')}>
                                 <Button darkMode={darkMode}>Lưu</Button>
+                                <Button darkMode={darkMode}>
+                                    <Link to={'/'}>Về trang chủ</Link>
+                                </Button>
                             </div>
                         </div>
                         <div className={cx('col l-5 m-0 c-0')}>
-                            <div className={cx('pre-avatar',darkMode && 'dark')}>
+                            <div
+                                className={cx('pre-avatar', darkMode && 'dark')}
+                            >
                                 <img
                                     src="https://i.pinimg.com/736x/8a/12/ab/8a12ab01805e01b7ae3de60640e57565.jpg"
                                     alt="avarta"

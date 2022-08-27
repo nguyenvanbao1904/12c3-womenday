@@ -79,11 +79,15 @@ $width-sub-text: 100px;
         font-size: 1.6rem;
     }
 }
-.submit-btn {
+.btn {
+    align-items: center;
+    justify-content: center;
+
     button {
-        padding: 10px 30px;
-        margin-left: calc($width-sub-text + 30px);
+        margin: 0 20px;
         margin-top: 20px;
+        width: 160px;
+        height: 45px;
     }
 }
 .pre-avatar {
