@@ -17,7 +17,6 @@
 .input.dark {
     background-color: #171717;
     color: var(--text-color-darkMode);
-    border: 2px solid transparent;
 
     &:focus-within {
         border: 2px solid;

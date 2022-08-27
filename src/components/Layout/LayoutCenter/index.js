@@ -11,7 +11,7 @@ function LayoutCenter({ children }) {
 
     return (
         <div className={cx('wrapper', darkMode && 'dark')}>
-            <div className={cx('grid wide', 'inner')}>
+            <div className={cx('inner', 'grid wide')}>
                 <div className={cx('container')}>{children}</div>
             </div>
         </div>

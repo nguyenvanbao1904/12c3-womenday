@@ -9,8 +9,9 @@
     height: 100%;
 }
 
+.inner,
 .container {
-    display: flex;
+    display: flex !important;
     align-items: center;
     justify-content: center;
 }
@@ -25,5 +26,9 @@
 @media (max-width: 739px) {
     .wrapper {
         overflow-y: scroll;
+    }
+    .container {
+        height: auto;
+        width: 90%;
     }
 }
