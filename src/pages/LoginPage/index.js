@@ -20,6 +20,7 @@ function LoginPage() {
     const passInputRef = useRef();
 
     const [isLoading, setIsLoading] = useState(false);
+    const [isWarning, setIsWarning] = useState(false);
 
     function handelClickForgotPass() {
         alert('Tính năng chưa được hỗ trợ');
@@ -30,11 +31,12 @@ function LoginPage() {
             if (userCheck.password === passInputRef.current.getValue()) {
                 window.location.href = '/';
                 localStorage.setItem('userId', userCheck.id);
+                setIsWarning(false);
             } else {
-                console.log('saiPass');
+                setIsWarning(true);
             }
         } else {
-            console.log('sai');
+            setIsWarning(true);
         }
     }
 
@@ -44,7 +46,8 @@ function LoginPage() {
         fetch(url)
             .then((response) => response.json())
             .then((user) => setUser(user))
-            .finally(setIsLoading(false));
+            .catch(() => alert('Thực hiện không thành công'))
+            .finally(() => setIsLoading(false));
     }, [url, setUser]);
 
     function handelLogin() {
@@ -83,6 +86,11 @@ function LoginPage() {
                                 ref={passInputRef}
                                 noCheckTrim
                             />
+                            {isWarning && (
+                                <small>
+                                    Tài khoản hoặc mật khẩu chưa chính xác !
+                                </small>
+                            )}
                             <span onClick={handelClickForgotPass}>
                                 Forgot Password ?
                             </span>
