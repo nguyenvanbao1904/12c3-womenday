@@ -1,6 +1,5 @@
 import classNames from 'classnames/bind';
-import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { useContext, useEffect, useRef, useState } from 'react';
 
 import styles from './loginPage.module.scss';
 import { logo } from '~/static/imgs';
@@ -8,15 +7,52 @@ import { loginImage } from '~/static/svgs';
 import Button from '~/components/Button';
 import Input from '~/components/Input';
 import SwitchTheme from '~/components/SwitchTheme';
-import { ThemeContext } from '~/components/ThemeContext';
+import { ThemeContext, UserContext } from '~/components/Context';
+import Loader from '~/components/Loader';
 
 const cx = classNames.bind(styles);
 
 function LoginPage() {
     const { darkMode } = useContext(ThemeContext);
+    const { user, setUser, url } = useContext(UserContext);
+
+    const userInputRef = useRef();
+    const passInputRef = useRef();
+
+    const [isLoading, setIsLoading] = useState(false);
 
     function handelClickForgotPass() {
         alert('Tính năng chưa được hỗ trợ');
+    }
+
+    function checkLogin(userCheck) {
+        if (userCheck) {
+            if (userCheck.password === passInputRef.current.getValue()) {
+                window.location.href = '/';
+                localStorage.setItem('userId', userCheck.id);
+            } else {
+                console.log('saiPass');
+            }
+        } else {
+            console.log('sai');
+        }
+    }
+
+    useEffect(() => {
+        setIsLoading(true);
+
+        fetch(url)
+            .then((response) => response.json())
+            .then((user) => setUser(user))
+            .finally(setIsLoading(false));
+    }, [url, setUser]);
+
+    function handelLogin() {
+        const userCheck = user.find((dataUser) => {
+            return dataUser.userName === userInputRef.current.getValue();
+        });
+
+        checkLogin(userCheck);
     }
 
     return (
@@ -38,22 +74,29 @@ function LoginPage() {
                             <Input
                                 placeholder="User Name"
                                 darkMode={darkMode}
+                                ref={userInputRef}
                             />
                             <Input
                                 type="password"
                                 placeholder="Password"
                                 darkMode={darkMode}
+                                ref={passInputRef}
+                                noCheckTrim
                             />
                             <span onClick={handelClickForgotPass}>
                                 Forgot Password ?
                             </span>
-                            <Button darkMode={darkMode}>
-                                <Link to="/">Continue</Link>
-                            </Button>
+                            <div
+                                className={cx('login-btn')}
+                                onClick={handelLogin}
+                            >
+                                <Button darkMode={darkMode}>continue</Button>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
+            {isLoading && <Loader></Loader>}
         </div>
     );
 }

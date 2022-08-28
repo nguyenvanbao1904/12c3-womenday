@@ -2,7 +2,7 @@ import classNames from 'classnames/bind';
 import { useContext } from 'react';
 
 import styles from './layoutCenter.module.scss';
-import { ThemeContext } from '~/components/ThemeContext';
+import { ThemeContext } from '~/components/Context';
 
 const cx = classNames.bind(styles);
 

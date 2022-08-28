@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import Button from '~/components/Button';
 import styles from './errorPage.module.scss';
-import { ThemeContext } from '~/components/ThemeContext';
+import { ThemeContext } from '~/components/Context';
 
 const cx = classNames.bind(styles);
 

@@ -87,11 +87,16 @@ $size-img: 270px;
             font-size: 18px;
         }
         -webkit-tap-highlight-color: transparent;
-        button {
-            padding: 15px;
-            border-radius: 15px;
-            margin-top: 60px;
-        }
+    }
+}
+
+.login-btn {
+    width: 100%;
+    button {
+        padding: 15px;
+        border-radius: 15px;
+        margin-top: 60px;
+        width: 100%;
     }
 }
 

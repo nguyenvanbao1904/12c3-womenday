@@ -5,7 +5,12 @@ const cx = classNames.bind(styles);
 
 function Button({ children, darkMode }) {
     return (
-        <button className={cx('button', darkMode && 'dark')}>{children}</button>
+        <button
+            className={cx('button', darkMode && 'dark')}
+            onClick={(e) => e.preventDefault()}
+        >
+            {children}
+        </button>
     );
 }
 

@@ -8,7 +8,7 @@ import styles from './Header.module.scss';
 import { logo } from '~/static/imgs';
 import { defaultAvatar } from '~/static/imgs';
 import SwitchTheme from '~/components/SwitchTheme';
-import { ThemeContext } from '~/components/ThemeContext';
+import { ThemeContext } from '~/components/Context';
 import MenuMobile from '~/components/MenuMobile';
 
 const cx = className.bind(styles);

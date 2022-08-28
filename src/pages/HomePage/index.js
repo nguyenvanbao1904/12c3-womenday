@@ -5,7 +5,7 @@ import classNames from 'classnames/bind';
 import styles from './homepage.module.scss';
 import Button from '~/components/Button';
 import { homeImage } from '~/static/imgs';
-import { ThemeContext } from '~/components/ThemeContext';
+import { ThemeContext } from '~/components/Context';
 
 const cx = classNames.bind(styles);
 

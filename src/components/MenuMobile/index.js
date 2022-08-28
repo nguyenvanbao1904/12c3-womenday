@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 
 import styles from './menuMobile.module,.scss';
 import SwitchTheme from '~/components/SwitchTheme';
-import { ThemeContext } from '~/components/ThemeContext';
+import { ThemeContext } from '~/components/Context';
 
 const cx = classNames.bind(styles);
 

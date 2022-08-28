@@ -1,7 +1,7 @@
 import Header from '../components/Header';
 import classNames from 'classnames/bind';
 import styles from './Default.module.scss';
-import { ThemeContext } from '~/components/ThemeContext';
+import { ThemeContext } from '~/components/Context';
 import { useContext } from 'react';
 
 const cx = classNames.bind(styles);

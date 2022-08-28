@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { ThemeContext } from '~/components/ThemeContext';
+import { ThemeContext } from '~/components/Context';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 
