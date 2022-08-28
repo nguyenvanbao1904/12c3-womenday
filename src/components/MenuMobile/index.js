@@ -42,7 +42,7 @@ function MenuMobile({ handelAvatarError, show, setShow }) {
                         <li>
                             <FontAwesomeIcon icon={faArrowRightFromBracket} />
                             <span>
-                                <Link to="/">Đăng xuất</Link>
+                                <Link to="/login">Đăng xuất</Link>
                             </span>
                         </li>
                         <li>

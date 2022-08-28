@@ -10,6 +10,7 @@ $fontSize: 1.8rem;
     box-shadow: 0 5px 15px rgb(0 0 0 / 35%);
     position: relative;
     transition: all 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
 
     &:hover {
         background-color: #6c453a;

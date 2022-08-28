@@ -15,6 +15,10 @@ const cx = classNames.bind(styles);
 function LoginPage() {
     const { darkMode } = useContext(ThemeContext);
 
+    function handelClickForgotPass() {
+        alert('Tính năng chưa được hỗ trợ');
+    }
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('inner', 'row', darkMode && 'dark')}>
@@ -40,7 +44,9 @@ function LoginPage() {
                                 placeholder="Password"
                                 darkMode={darkMode}
                             />
-                            <span>Forgot Password ?</span>
+                            <span onClick={handelClickForgotPass}>
+                                Forgot Password ?
+                            </span>
                             <Button darkMode={darkMode}>
                                 <Link to="/">Continue</Link>
                             </Button>
