@@ -3,16 +3,18 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import GlobalStyles from '~/components/GlobalStyles';
 import reportWebVitals from './reportWebVitals';
-import { ThemProvider, UserProvider } from '~/components/Context';
+import { ThemProvider, UserProvider, DataProvider } from '~/components/Context';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
         <GlobalStyles>
             <UserProvider>
-                <ThemProvider>
-                    <App />
-                </ThemProvider>
+                <DataProvider>
+                    <ThemProvider>
+                        <App />
+                    </ThemProvider>
+                </DataProvider>
             </UserProvider>
         </GlobalStyles>
     </React.StrictMode>,

@@ -1,17 +1,26 @@
 import { useContext } from 'react';
-import { ThemeContext } from '~/components/Context';
+import { ThemeContext, DataContext } from '~/components/Context';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 
 import styles from './profilePage.module.scss';
 import Input from '~/components/Input';
+import { defaultAvatar } from '~/static/imgs';
 import Button from '~/components/Button';
 import SwitchTheme from '~/components/SwitchTheme';
+import Loader from '~/components/Loader';
 
 const cx = classNames.bind(styles);
 
 function ProfilePage() {
     const { darkMode } = useContext(ThemeContext);
+    const { data, isLoading } = useContext(DataContext);
+
+    function handelAvatarError(e) {
+        e.target.src = defaultAvatar;
+    }
+
+    console.log(data);
 
     return (
         <div className={cx('wrapper')}>
@@ -32,7 +41,7 @@ function ProfilePage() {
                         <div className={cx('account', 'col l-7 m-12 c-12')}>
                             <div className={cx('user-name')}>
                                 <p>Tên Đăng Nhập</p>
-                                <p>Ngo Thuy An</p>
+                                <p>{data.name}</p>
                             </div>
                             <div>
                                 <p>Tên</p>
@@ -58,8 +67,9 @@ function ProfilePage() {
                                 className={cx('pre-avatar', darkMode && 'dark')}
                             >
                                 <img
-                                    src="https://i.pinimg.com/736x/8a/12/ab/8a12ab01805e01b7ae3de60640e57565.jpg"
+                                    src={data.avatar}
                                     alt="avarta"
+                                    onError={handelAvatarError}
                                 ></img>
                                 <p>Đây là hình ảnh xem trước avatar của bạn</p>
                             </div>
@@ -67,6 +77,7 @@ function ProfilePage() {
                     </div>
                 </div>
             </div>
+            {isLoading && <Loader />}
         </div>
     );
 }

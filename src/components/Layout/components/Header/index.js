@@ -8,13 +8,15 @@ import styles from './Header.module.scss';
 import { logo } from '~/static/imgs';
 import { defaultAvatar } from '~/static/imgs';
 import SwitchTheme from '~/components/SwitchTheme';
-import { ThemeContext } from '~/components/Context';
+import { ThemeContext, DataContext } from '~/components/Context';
 import MenuMobile from '~/components/MenuMobile';
 
 const cx = className.bind(styles);
 
 function Header() {
     const { darkMode } = useContext(ThemeContext);
+    const { data } = useContext(DataContext);
+
     const [showMenuMobile, setshowMenuMobile] = useState(false);
 
     function handelAvatarError(e) {
@@ -34,7 +36,7 @@ function Header() {
             <Link to="/">
                 <img src={logo} alt="logo" />
             </Link>
-            <h1>Hello Thúy An</h1>
+            <h1>Hello {data.name}</h1>
             <div className={cx('avatar-container')}>
                 <img src="" onError={handelAvatarError} alt="avatar" />
                 <div className={cx('sub-menu', darkMode && 'dark')}>

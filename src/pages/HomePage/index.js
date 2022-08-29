@@ -5,12 +5,14 @@ import classNames from 'classnames/bind';
 import styles from './homepage.module.scss';
 import Button from '~/components/Button';
 import { homeImage } from '~/static/imgs';
-import { ThemeContext } from '~/components/Context';
+import { ThemeContext, DataContext } from '~/components/Context';
+import Loader from '~/components/Loader';
 
 const cx = classNames.bind(styles);
 
 function HomePage() {
     const { darkMode } = useContext(ThemeContext);
+    const { data, isLoading } = useContext(DataContext);
 
     return (
         <div className={cx('wrapper')}>
@@ -22,7 +24,7 @@ function HomePage() {
                         darkMode && 'dark',
                     )}
                 >
-                    <p>Hey, Thúy An cùng mình khám phá bất ngờ này nhé !</p>
+                    <p>Hey, {data.name} cùng mình khám phá bất ngờ này nhé !</p>
                     <Button>
                         <Link to="/present">let's go !!!</Link>
                     </Button>
@@ -37,6 +39,7 @@ function HomePage() {
                     <img src={homeImage} alt=""></img>
                 </div>
             </div>
+            {isLoading && <Loader />}
         </div>
     );
 }
