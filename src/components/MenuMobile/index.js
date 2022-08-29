@@ -7,7 +7,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
-import styles from './menuMobile.module,.scss';
+import styles from './menuMobile.module.scss';
 import SwitchTheme from '~/components/SwitchTheme';
 import { ThemeContext } from '~/components/Context';
 

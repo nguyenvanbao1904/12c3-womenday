@@ -25,6 +25,10 @@ function Header() {
         setshowMenuMobile(true);
     }
 
+    function handelLogout() {
+        localStorage.removeItem('userId');
+    }
+
     return (
         <div className={cx('wrapper', 'row', darkMode && 'dark')}>
             <Link to="/">
@@ -39,7 +43,9 @@ function Header() {
                             <Link to="/profilePage">Tài Khoản Của Tôi</Link>
                         </li>
                         <li>
-                            <Link to="/login">Đăng Xuất</Link>
+                            <Link to="/login" onClick={handelLogout}>
+                                Đăng Xuất
+                            </Link>
                         </li>
                         <li>
                             <SwitchTheme />

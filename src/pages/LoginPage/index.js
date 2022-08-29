@@ -78,6 +78,7 @@ function LoginPage() {
                                 placeholder="User Name"
                                 darkMode={darkMode}
                                 ref={userInputRef}
+                                setIsWarning={setIsWarning}
                             />
                             <Input
                                 type="password"
@@ -85,6 +86,7 @@ function LoginPage() {
                                 darkMode={darkMode}
                                 ref={passInputRef}
                                 noCheckTrim
+                                setIsWarning={setIsWarning}
                             />
                             {isWarning && (
                                 <small>

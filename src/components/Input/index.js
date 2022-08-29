@@ -5,9 +5,16 @@ import styles from './input.module.scss';
 
 const cx = classNames.bind(styles);
 
-function Input({ type, placeholder, darkMode, noCheckTrim }, ref) {
+function Input(
+    { type, placeholder, darkMode, noCheckTrim, setIsWarning },
+    ref,
+) {
     const [value, setValue] = useState('');
     const inputRef = useRef();
+
+    function handelChange(e) {
+        setValue(e.target.value);
+    }
 
     useImperativeHandle(ref, () => ({
         getValue() {
@@ -24,7 +31,8 @@ function Input({ type, placeholder, darkMode, noCheckTrim }, ref) {
             placeholder={placeholder ? placeholder : ''}
             spellCheck="false"
             value={value}
-            onChange={(e) => setValue(e.target.value)}
+            onChange={(e) => handelChange(e)}
+            onFocus={() => (setIsWarning ? setIsWarning(false) : () => {})}
             ref={inputRef}
         />
     );

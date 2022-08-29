@@ -1,3 +1,6 @@
+.wrapper {
+    z-index: 0;
+}
 .inner {
     text-align: center;
 
@@ -19,7 +22,6 @@
 }
 
 // darkMode
-
 .inner.dark {
     h1,
     p {

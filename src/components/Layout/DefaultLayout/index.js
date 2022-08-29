@@ -9,6 +9,10 @@ const cx = classNames.bind(styles);
 function DefaultLayout({ children }) {
     const { darkMode } = useContext(ThemeContext);
 
+    if (!localStorage.getItem('userId')) {
+        window.location.href = '/login';
+    }
+
     return (
         <div className={cx('wrapper', darkMode && 'dark')}>
             <div className={cx('inner', 'grid wide')}>
