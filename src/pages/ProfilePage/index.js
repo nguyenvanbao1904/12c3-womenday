@@ -8,13 +8,12 @@ import Input from '~/components/Input';
 import { defaultAvatar } from '~/static/imgs';
 import Button from '~/components/Button';
 import SwitchTheme from '~/components/SwitchTheme';
-import Loader from '~/components/Loader';
 
 const cx = classNames.bind(styles);
 
 function ProfilePage() {
     const { darkMode } = useContext(ThemeContext);
-    const { data, isLoading } = useContext(DataContext);
+    const { data } = useContext(DataContext);
 
     function handelAvatarError(e) {
         e.target.src = defaultAvatar;
@@ -77,7 +76,6 @@ function ProfilePage() {
                     </div>
                 </div>
             </div>
-            {isLoading && <Loader />}
         </div>
     );
 }

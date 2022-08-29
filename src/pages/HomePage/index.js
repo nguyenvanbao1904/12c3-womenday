@@ -6,13 +6,12 @@ import styles from './homepage.module.scss';
 import Button from '~/components/Button';
 import { homeImage } from '~/static/imgs';
 import { ThemeContext, DataContext } from '~/components/Context';
-import Loader from '~/components/Loader';
 
 const cx = classNames.bind(styles);
 
 function HomePage() {
     const { darkMode } = useContext(ThemeContext);
-    const { data, isLoading } = useContext(DataContext);
+    const { data } = useContext(DataContext);
 
     return (
         <div className={cx('wrapper')}>
@@ -39,7 +38,6 @@ function HomePage() {
                     <img src={homeImage} alt=""></img>
                 </div>
             </div>
-            {isLoading && <Loader />}
         </div>
     );
 }

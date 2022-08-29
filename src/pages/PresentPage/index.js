@@ -2,13 +2,12 @@ import { useContext } from 'react';
 import classNames from 'classnames/bind';
 import styles from './presentPage.module.scss';
 import { ThemeContext, DataContext } from '~/components/Context';
-import Loader from '~/components/Loader';
 
 const cx = classNames.bind(styles);
 
 function PresentPage() {
     const { darkMode } = useContext(ThemeContext);
-    const { data, isLoading } = useContext(DataContext);
+    const { data } = useContext(DataContext);
 
     return (
         <div className={cx('wrapper')}>
@@ -29,7 +28,6 @@ function PresentPage() {
                     </div>
                 </div>
             </div>
-            {isLoading && <Loader />}
         </div>
     );
 }
