@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 
 import styles from './layoutCenter.module.scss';
 import { ThemeContext, DataContext } from '~/components/Context';
@@ -9,13 +9,19 @@ const cx = classNames.bind(styles);
 
 function LayoutCenter({ children }) {
     const { darkMode } = useContext(ThemeContext);
-    const { isLoading } = useContext(DataContext);
+    const { isLoading, setIsLoading } = useContext(DataContext);
 
     if (!localStorage.getItem('userId')) {
         if (!(window.location.pathname === '/login')) {
             window.location.href = '/login';
         }
     }
+
+    useEffect(() => {
+        if (window.location.pathname === '/login') {
+            setIsLoading(false);
+        }
+    }, [isLoading, setIsLoading]);
 
     return (
         <div className={cx('wrapper', darkMode && 'dark')}>

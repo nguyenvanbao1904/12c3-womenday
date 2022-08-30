@@ -25,6 +25,7 @@ function DataProvider({ children }) {
                 data,
                 setData,
                 isLoading,
+                setIsLoading,
             }}
         >
             {children}

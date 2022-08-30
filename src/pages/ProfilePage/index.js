@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { ThemeContext, DataContext } from '~/components/Context';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
@@ -8,18 +8,65 @@ import Input from '~/components/Input';
 import { defaultAvatar } from '~/static/imgs';
 import Button from '~/components/Button';
 import SwitchTheme from '~/components/SwitchTheme';
+import Loader from '~/components/Loader';
 
 const cx = classNames.bind(styles);
 
 function ProfilePage() {
+    const userId = localStorage.getItem('userId');
+
     const { darkMode } = useContext(ThemeContext);
-    const { data } = useContext(DataContext);
+    const { data, setData, isLoading, setIsLoading } = useContext(DataContext);
+
+    const nameInputRef = useRef();
+    const passInputRef = useRef();
+    const avartaUrlInputRef = useRef();
 
     function handelAvatarError(e) {
         e.target.src = defaultAvatar;
     }
 
-    console.log(data);
+    function changeData() {
+        const newdata = {
+            name: nameInputRef.current.getValue(),
+            avatar: avartaUrlInputRef.current.getValue(),
+        };
+
+        fetch(`https://server-womenday.glitch.me/data/${userId}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newdata),
+        })
+            .then((response) => response.json())
+            .then((newData) => setData(newData))
+            .catch(() => alert('Thực hiện không thành công'))
+            .finally(() => setIsLoading(false));
+    }
+
+    function changePassword() {
+        const newPass = {
+            password: passInputRef.current.getValue(),
+        };
+
+        fetch(`https://server-womenday.glitch.me/users/${userId}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newPass),
+        })
+            .then(() => alert('Thay đổi thành công'))
+            .catch(() => alert('Thực hiện không thành công'))
+            .finally(() => setIsLoading(false));
+    }
+
+    function handelPutData() {
+        setIsLoading(true);
+        changeData();
+        changePassword();
+    }
 
     return (
         <div className={cx('wrapper')}>
@@ -39,23 +86,33 @@ function ProfilePage() {
                     <div className={cx('content', 'row', darkMode && 'dark')}>
                         <div className={cx('account', 'col l-7 m-12 c-12')}>
                             <div className={cx('user-name')}>
-                                <p>Tên Đăng Nhập</p>
+                                <p>Tên hiện tại</p>
                                 <p>{data.name}</p>
                             </div>
                             <div>
                                 <p>Tên</p>
-                                <Input darkMode={darkMode} />
+                                <Input darkMode={darkMode} ref={nameInputRef} />
                             </div>
                             <div>
                                 <p>Mật Khẩu</p>
-                                <Input type="password" darkMode={darkMode} />
+                                <Input
+                                    type="password"
+                                    darkMode={darkMode}
+                                    ref={passInputRef}
+                                />
                             </div>
                             <div>
                                 <p>Link ảnh</p>
-                                <Input type="text" darkMode={darkMode} />
+                                <Input
+                                    type="text"
+                                    darkMode={darkMode}
+                                    ref={avartaUrlInputRef}
+                                />
                             </div>
                             <div className={cx('btn')}>
-                                <Button darkMode={darkMode}>Lưu</Button>
+                                <Button darkMode={darkMode}>
+                                    <a onClick={handelPutData}>Lưu</a>
+                                </Button>
                                 <Button darkMode={darkMode}>
                                     <Link to={'/'}>Về trang chủ</Link>
                                 </Button>
@@ -76,6 +133,7 @@ function ProfilePage() {
                     </div>
                 </div>
             </div>
+            {isLoading && <Loader />}
         </div>
     );
 }
