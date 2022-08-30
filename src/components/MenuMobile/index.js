@@ -22,6 +22,10 @@ function MenuMobile({ handelAvatarError, show, setShow }) {
         }
     }
 
+    function handelLogout() {
+        localStorage.removeItem('userId');
+    }
+
     return (
         <div
             className={cx('wrapper', darkMode && 'dark', show && 'show')}
@@ -42,7 +46,9 @@ function MenuMobile({ handelAvatarError, show, setShow }) {
                         <li>
                             <FontAwesomeIcon icon={faArrowRightFromBracket} />
                             <span>
-                                <Link to="/login">Đăng xuất</Link>
+                                <Link to="/login" onClick={handelLogout}>
+                                    Đăng xuất
+                                </Link>
                             </span>
                         </li>
                         <li>
