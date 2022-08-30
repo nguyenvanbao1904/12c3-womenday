@@ -9,7 +9,7 @@ const cx = classNames.bind(styles);
 
 function LayoutCenter({ children }) {
     const { darkMode } = useContext(ThemeContext);
-    const { isLoading, setIsLoading } = useContext(DataContext);
+    const { isLoading, setIsLoading, data } = useContext(DataContext);
 
     if (!localStorage.getItem('userId')) {
         if (!(window.location.pathname === '/login')) {
@@ -22,6 +22,14 @@ function LayoutCenter({ children }) {
             setIsLoading(false);
         }
     }, [isLoading, setIsLoading]);
+
+    useEffect(() => {
+        if (window.location.pathname === '/login') {
+            document.title = `Wellcome to C3 - Login `;
+        } else {
+            document.title = `Dear ${data.name}`;
+        }
+    }, []);
 
     return (
         <div className={cx('wrapper', darkMode && 'dark')}>
