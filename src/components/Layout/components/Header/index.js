@@ -38,7 +38,11 @@ function Header() {
             </Link>
             <h1>Hello {data.name}</h1>
             <div className={cx('avatar-container')}>
-                <img src="" onError={handelAvatarError} alt="avatar" />
+                <img
+                    src={data.avatar}
+                    onError={handelAvatarError}
+                    alt="avatar"
+                />
                 <div className={cx('sub-menu', darkMode && 'dark')}>
                     <ul>
                         <li>

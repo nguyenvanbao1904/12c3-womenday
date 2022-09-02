@@ -9,12 +9,13 @@ import { Link } from 'react-router-dom';
 
 import styles from './menuMobile.module.scss';
 import SwitchTheme from '~/components/SwitchTheme';
-import { ThemeContext } from '~/components/Context';
+import { ThemeContext, DataContext } from '~/components/Context';
 
 const cx = classNames.bind(styles);
 
 function MenuMobile({ handelAvatarError, show, setShow }) {
     const { darkMode } = useContext(ThemeContext);
+    const { data } = useContext(DataContext);
 
     function handelClickCloseMenu(e) {
         if (e.target === e.currentTarget) {
@@ -33,7 +34,11 @@ function MenuMobile({ handelAvatarError, show, setShow }) {
         >
             <div className={cx('inner')}>
                 <div className={cx('avatar')}>
-                    <img onError={handelAvatarError} src="" alt="avatar" />
+                    <img
+                        onError={handelAvatarError}
+                        src={data.avatar}
+                        alt="avatar"
+                    />
                 </div>
                 <div className={cx('list-options', darkMode && 'dark')}>
                     <ul>
