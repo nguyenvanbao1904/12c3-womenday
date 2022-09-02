@@ -19,7 +19,7 @@ function ErrorPage() {
                     Nếu bạn nhập địa chỉ theo cách thủ công, hãy kiểm tra lại
                     xem có chính xác không ?
                 </p>
-                <Button darkMode={darkMode}>
+                <Button darkMode={darkMode} isActive>
                     <Link to="/">Quay về trang chủ</Link>
                 </Button>
             </div>

@@ -1,12 +1,18 @@
 import classNames from 'classnames/bind';
-import { useState, forwardRef, useImperativeHandle, useRef } from 'react';
+import {
+    useState,
+    forwardRef,
+    useImperativeHandle,
+    useRef,
+    useEffect,
+} from 'react';
 
 import styles from './input.module.scss';
 
 const cx = classNames.bind(styles);
 
 function Input(
-    { type, placeholder, darkMode, noCheckTrim, setIsWarning },
+    { type, placeholder, darkMode, noCheckTrim, setIsWarning, setIsActiveBtn },
     ref,
 ) {
     const [value, setValue] = useState('');
@@ -18,11 +24,29 @@ function Input(
 
     useImperativeHandle(ref, () => ({
         getValue() {
-            return noCheckTrim
-                ? inputRef.current.value
-                : inputRef.current.value.trim();
+            if (inputRef.current.value) {
+                return noCheckTrim
+                    ? inputRef.current.value
+                    : inputRef.current.value.trim();
+            }
+        },
+        setValue(value) {
+            inputRef.current.value = setValue(value);
+        },
+        focus() {
+            inputRef.current.focus();
         },
     }));
+
+    useEffect(() => {
+        if (setIsActiveBtn) {
+            if (type === 'password') {
+                inputRef.current.value.trim().length < 8
+                    ? setIsActiveBtn(false)
+                    : setIsActiveBtn(true);
+            }
+        }
+    }, [value, type, setIsActiveBtn]);
 
     return (
         <input

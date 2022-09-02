@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { ThemeContext, DataContext } from '~/components/Context';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
@@ -20,16 +20,26 @@ function ProfilePage() {
 
     const nameInputRef = useRef();
     const passInputRef = useRef();
-    const avartaUrlInputRef = useRef();
+    const avatarUrlInputRef = useRef();
+
+    const [isActive, setIsActive] = useState(false);
 
     function handelAvatarError(e) {
         e.target.src = defaultAvatar;
     }
 
+    useEffect(() => {
+        nameInputRef.current.focus();
+    }, []);
+
     function changeData() {
         const newdata = {
-            name: nameInputRef.current.getValue(),
-            avatar: avartaUrlInputRef.current.getValue(),
+            name: nameInputRef.current.getValue()
+                ? nameInputRef.current.getValue()
+                : data.name,
+            avatar: avatarUrlInputRef.current.getValue()
+                ? avatarUrlInputRef.current.getValue()
+                : data.avatar,
         };
 
         fetch(`https://server-womenday.glitch.me/data/${userId}`, {
@@ -63,9 +73,16 @@ function ProfilePage() {
     }
 
     function handelPutData() {
-        setIsLoading(true);
-        changeData();
-        changePassword();
+        if (isActive) {
+            setIsLoading(true);
+            changeData();
+            changePassword();
+
+            nameInputRef.current.setValue('');
+            passInputRef.current.setValue('');
+            avatarUrlInputRef.current.setValue('');
+            nameInputRef.current.focus();
+        }
     }
 
     return (
@@ -91,7 +108,12 @@ function ProfilePage() {
                             </div>
                             <div>
                                 <p>Tên</p>
-                                <Input darkMode={darkMode} ref={nameInputRef} />
+                                <Input
+                                    type="text"
+                                    darkMode={darkMode}
+                                    ref={nameInputRef}
+                                    setIsActiveBtn={setIsActive}
+                                />
                             </div>
                             <div>
                                 <p>Mật Khẩu</p>
@@ -99,6 +121,7 @@ function ProfilePage() {
                                     type="password"
                                     darkMode={darkMode}
                                     ref={passInputRef}
+                                    setIsActiveBtn={setIsActive}
                                 />
                             </div>
                             <div>
@@ -106,14 +129,14 @@ function ProfilePage() {
                                 <Input
                                     type="text"
                                     darkMode={darkMode}
-                                    ref={avartaUrlInputRef}
+                                    ref={avatarUrlInputRef}
                                 />
                             </div>
                             <div className={cx('btn')}>
-                                <Button darkMode={darkMode}>
-                                    <a onClick={handelPutData}>Lưu</a>
+                                <Button darkMode={darkMode} isActive={isActive}>
+                                    <span onClick={handelPutData}>Lưu</span>
                                 </Button>
-                                <Button darkMode={darkMode}>
+                                <Button darkMode={darkMode} isActive>
                                     <Link to={'/'}>Về trang chủ</Link>
                                 </Button>
                             </div>

@@ -100,7 +100,9 @@ function LoginPage() {
                                 className={cx('login-btn')}
                                 onClick={handelLogin}
                             >
-                                <Button darkMode={darkMode}>continue</Button>
+                                <Button darkMode={darkMode} isActive>
+                                    continue
+                                </Button>
                             </div>
                         </form>
                     </div>

@@ -24,7 +24,7 @@ function HomePage() {
                     )}
                 >
                     <p>Hey, {data.name} cùng mình khám phá bất ngờ này nhé !</p>
-                    <Button>
+                    <Button isActive>
                         <Link to="/present">let's go !!!</Link>
                     </Button>
                 </div>

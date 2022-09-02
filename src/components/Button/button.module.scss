@@ -1,8 +1,17 @@
 $fontSize: 1.8rem;
 
+@mixin beforeChillrenElement {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+}
+
 .button {
-    background-color: #996252;
-    cursor: pointer;
+    background-color: #777;
+    opacity: 0.7;
     color: #fff;
     font-family: Cabin, sans-serif;
     font-size: $fontSize;
@@ -12,32 +21,48 @@ $fontSize: 1.8rem;
     transition: all 0.3s ease;
     -webkit-tap-highlight-color: transparent;
 
-    &:hover {
-        background-color: #6c453a;
-        box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
-    }
-
-    a {
+    a,
+    span {
         color: #fff;
         font-family: Cabin, sans-serif;
         font-size: $fontSize;
         font-weight: 400;
         text-decoration: none;
+        cursor: not-allowed;
     }
 
-    a::before {
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        right: 0;
+    a:before {
+        @include beforeChillrenElement;
+    }
+
+    span:before {
+        @include beforeChillrenElement;
     }
 }
 
 .button.dark {
-    background-color: #687eff;
+    background-color: #888;
     filter: brightness(0.9) contrast(1.2);
+}
+
+// active
+
+.button.active {
+    background-color: #996252;
+    opacity: 1;
+
+    &:hover {
+        background-color: #6c453a;
+        box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
+    }
+
+    a,
+    span {
+        cursor: pointer;
+    }
+}
+.button.dark.active {
+    background-color: #687eff;
 
     &:hover {
         filter: brightness(0.8) contrast(1.5);

@@ -29,7 +29,7 @@ function LayoutCenter({ children }) {
         } else {
             document.title = `Dear ${data.name}`;
         }
-    }, []);
+    }, [data]);
 
     return (
         <div className={cx('wrapper', darkMode && 'dark')}>
